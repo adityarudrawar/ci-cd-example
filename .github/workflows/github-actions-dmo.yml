@@ -43,15 +43,20 @@ jobs:
     - name: Creating ENV file
       run: cat example.env >> .env
     
-    # Creating PostGres
-    - name: Install PostGres
+    # Check PostGres
+    - name: Check PostGres
       run: |
+        psql --version
+
+    # Creating PostGres
+    # - name: Install PostGres
+    #   run: |
 
     # Create an ENV file and run it
     
-    - name: Run Go API
-      run: |
-        go run .
+    # - name: Run Go API
+    #   run: |
+    #     go run .
     
     # Set up Postgres.
     # Create table
