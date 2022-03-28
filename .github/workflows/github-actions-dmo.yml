@@ -39,14 +39,15 @@ jobs:
         go mod tidy
         go build
     
+    - name: Install PostGres
+      run: |
+        
     # Create an ENV file and run it
     
     - name: Run Go API
       run: |
         go run .
-    # Go run .
-
-
+    
     # Set up Postgres.
     # Create table
 
