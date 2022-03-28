@@ -39,9 +39,14 @@ jobs:
         go mod tidy
         go build
     
+    # Copy ENV file from example.env
+    - name: Creating ENV file
+      run: cat example.env >> .env
+    
+    # Creating PostGres
     - name: Install PostGres
       run: |
-        
+
     # Create an ENV file and run it
     
     - name: Run Go API
