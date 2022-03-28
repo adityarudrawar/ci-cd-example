@@ -20,7 +20,17 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
+    
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_DB: postgres        
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+        ports:
+          - 5432:5432
+    
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -43,20 +53,18 @@ jobs:
     - name: Creating ENV file
       run: cat example.env >> .env
     
-    # Check PostGres
-    - name: Check PostGres
-      run: |
-        psql --version
-
-    # Creating PostGres
-    # - name: Install PostGres
+    # # Check PostGres
+    # - name: Check PostGres
     #   run: |
+    #     psql --version
+    #     psql
+
 
     # Create an ENV file and run it
     
-    # - name: Run Go API
-    #   run: |
-    #     go run .
+    - name: Run Go API
+      run: |
+        go run .
     
     # Set up Postgres.
     # Create table
