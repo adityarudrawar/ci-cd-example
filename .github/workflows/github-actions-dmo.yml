@@ -39,6 +39,8 @@ jobs:
         go mod tidy
         go build
     
+    # Create an ENV file and run it
+    
     - name: Run Go API
       run: |
         go run .
