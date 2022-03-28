@@ -38,6 +38,10 @@ jobs:
         go version
         go mod tidy
         go build
+    
+    - name: Run Go API
+      run: |
+        go run .
     # Go run .
 
 
