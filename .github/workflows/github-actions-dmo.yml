@@ -53,22 +53,12 @@ jobs:
     # Copy ENV file from example.env
     - name: Creating ENV file
       run: cat example.env >> .env
-    
-    # # Check PostGres
-    # - name: Check PostGres
-    #   run: |
-    #     psql --version
-    #     psql
 
-
-    # Create an ENV file and run it    
-    - name: Run Go API
+    # Build
+    - name: Build
       run: |
-        go run .
-    
-    # Set up Postgres.
-    # Create table
+        go build -v ./..
 
-    
-    # Docker Build
-    # Docker Push
+    # # Build the Docker image
+    # - name: Building the Docker Image
+    #   run: 
