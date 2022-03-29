@@ -24,8 +24,9 @@ jobs:
         docker login -u ${{secrets.DOCKER_NAME}} -p ${{secrets.DOCKER_PASSWORD}}
     - name: Build the Docker Image
       # run: docker build . --file Dockerfile --tag metalman66/cicd-test:$(date + %s)
-      run: docker build -t ${{secrets.DOCKER_NAME}}/cicd-test:arm64 .
-      run: docker build -t ${{secrets.DOCKER_NAME}}/cicd-test:amd64 .
+      run: |
+        docker build -t ${{secrets.DOCKER_NAME}}/cicd-test:arm64 .
+        docker build -t ${{secrets.DOCKER_NAME}}/cicd-test:amd064 .
     
     - name: Docker Push
       run: docker push ${{secrets.DOCKER_NAME}}/cicd-test
