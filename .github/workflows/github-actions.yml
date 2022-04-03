@@ -3,10 +3,10 @@ name: API Gateway CICD
 on:
   push:
     branches:
-    - dev-api-gateway
+    - gateway
   pull_request:
     branches:
-    - dev-api-gateway
+    - gateway
 
 jobs:
   build:
