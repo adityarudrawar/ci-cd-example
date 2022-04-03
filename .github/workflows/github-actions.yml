@@ -21,7 +21,29 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '17.0.1'
+    
     - run: | 
         mvn package
         cd target
-        # java -jar api-gateway-0.0.1-SNAPSHOT.jar
+      # java -jar api-gateway-0.0.1-SNAPSHOT.jar
+    
+    - name: Docker Login
+      env:
+        DOCKER_USER: '${{secrets.DOCKER_USERNAME}}'
+        DOCKER_PASSWORD: '${{secrets.DOCKER_PASSWORD}}'
+      run: |
+        docker login -u '${{secrets.DOCKER_USERNAME}}' -p '${{secrets.DOCKER_PASSWORD}}'
+        
+    - name: Build the Docker Image
+      # run: docker build . --file Dockerfile --tag metalman66/cicd-test:$(date + %s)
+      run: |
+        docker build . --file Dockerfile --tag metalman66/cicd-gateway-test:amd64
+        docker build . --file Dockerfile --tag metalman66/cicd-gateway-test:arm64
+      # run: |
+      #   docker build -t '${{ secrets.DOCKER_USERNAME }}'/cicd-test:arm64 .
+      #   docker build -t '${{ secrets.DOCKER_USERNAME }}'/cicd-test:amd64 .
+
+    - name: Docker Push
+      run: |
+        docker push '${{secrets.DOCKER_USERNAME}}'/cicd-gateway-test:amd64
+        docker push '${{secrets.DOCKER_USERNAME}}'/cicd-gateway-test:arm64
