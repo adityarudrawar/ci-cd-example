@@ -51,7 +51,7 @@ jobs:
           
       - name: run the deployment script
         run: |
-             SCRIPT="touch file_2.txt"
+             SCRIPT="sudo touch file_2.txt"
              ssh deploy "${SCRIPT}"
              
 
