@@ -29,7 +29,7 @@ jobs:
     - name: Installing expect and connecting to ssh
       run : |
         sudo apt install expect
-        echo expect -c 'spawn ssh exouser@149.165.152.101;expect "connecting"; send "yes\r";expect "password:";send "${{secrets.PASSPHRASE}}\r"; send -- "whoami\r"'
+        echo expect -c 'spawn ssh exouser@149.165.152.101;expect "connecting"; send "yes\r";expect "password:";send "${{secrets.PASSPHRASE}}\r"; send -- "kubectl rollout restart deployment/go\r"'
       # exit
       # sudo touch file_2.txt
       # - uses: actions/checkout@v3
