@@ -31,7 +31,7 @@ jobs:
         sudo apt install expect
         expect -c 'spawn ssh exouser@149.165.152.101;expect "connecting"; send "yes\r";expect "password:";send "${{secrets.PASSPHRASE}}\r"; interact'
         hostname -i
-        echo kubectl get pods
+        kubectl get pods
 
 
     
