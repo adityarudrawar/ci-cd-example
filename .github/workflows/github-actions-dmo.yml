@@ -25,34 +25,35 @@ jobs:
     #       - 5432:5432
       
     steps:
-    # - uses: actions/checkout@v2
-    # - name: Installing expect and connecting to ssh
-    #   run : |
-    #     sudo apt install expect
-    #     expect -c 'spawn ssh exouser@149.165.152.101;expect "connecting"; send "yes\r";expect "password:";send "${{secrets.PASSPHRASE}}\r"; interact'
-      - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
+    - name: Installing expect and connecting to ssh
+      run : |
+        sudo apt install expect
+        expect -c 'spawn ssh exouser@149.165.152.101;expect "connecting"; send "yes\r";expect "password:";send "${{secrets.PASSPHRASE}}\r"; interact'
+        sudo kubectl get pods
+      # - uses: actions/checkout@v3
       
-      - name: Configure SSH
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$SSH_KEY" > ~/.ssh/staging.key
-          chmod 600 ~/.ssh/staging.key
-          cat >>~/.ssh/config <<END
-          Host deploy
-            HostName $SSH_HOST
-            User $SSH_USER
-            IdentityFile ~/.ssh/staging.key
-            StrictHostKeyChecking no
-          END
-        env:
-          SSH_KEY: ${{ secrets.DEPLOY_PUBLIC_KEY }}
-          SSH_HOST: 149.165.152.101
-          SSH_USER: exouser
+      # - name: Configure SSH
+      #   run: |
+      #     mkdir -p ~/.ssh/
+      #     echo "$SSH_KEY" > ~/.ssh/staging.key
+      #     chmod 600 ~/.ssh/staging.key
+      #     cat >>~/.ssh/config <<END
+      #     Host deploy
+      #       HostName $SSH_HOST
+      #       User $SSH_USER
+      #       IdentityFile ~/.ssh/staging.key
+      #       StrictHostKeyChecking no
+      #     END
+      #   env:
+      #     SSH_KEY: ${{ secrets.DEPLOY_PUBLIC_KEY }}
+      #     SSH_HOST: 149.165.152.101
+      #     SSH_USER: exouser
           
-      - name: run the deployment script
-        run: |
-             SCRIPT="sudo touch file_2.txt"
-             ssh deploy "${SCRIPT}"
+      # - name: run the deployment script
+      #   run: |
+      #        SCRIPT="sudo touch file_2.txt"
+      #        ssh deploy "${SCRIPT}"
              
 
         
