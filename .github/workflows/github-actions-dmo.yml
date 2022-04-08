@@ -45,7 +45,7 @@ jobs:
             StrictHostKeyChecking no
           END
         env:
-          SSH_KEY: ${{ secrets.DEPLOY_SECRET_KEY }}
+          SSH_KEY: ${{ secrets.DEPLOY_PUBLIC_KEY }}
           SSH_HOST: 149.165.152.101
           SSH_USER: exouser
           
