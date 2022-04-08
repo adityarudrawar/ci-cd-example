@@ -29,7 +29,7 @@ jobs:
     - name: Installing expect and connecting to ssh
       run : |
         sudo apt install expect
-        expect -c 'spawn ssh exouser@149.165.152.101;expect "password:";send "'${{secrets.PASSPHRASE}}'"; interact'
+        expect -c 'spawn ssh exouser@149.165.152.101;expect "connecting"; send "yes\r";expect "password:";send "'${{secrets.PASSPHRASE}}'"; interact'
         echo whoami
 
 
